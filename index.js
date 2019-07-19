@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 const PORT = process.env.PORT;
-const io = require("socket.io");
+const io = require("socket.io-client");
 const socket = io.connect("https://topner.herokuapp.com");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
