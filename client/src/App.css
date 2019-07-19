@@ -1,0 +1,116 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+}
+a {
+  text-decoration: none;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.tp-navigation {
+  display: flex;
+  padding: 10px 1em;
+  justify-content: center;
+  align-content: center;
+}
+
+.tp-main {
+  padding: 0 1em;
+}
+
+.tp-navigation ul li {
+  display: inline;
+  padding: 0 0.5em;
+}
+
+.tp-navigation ul li a {
+  color: black;
+}
+
+.tp-real-time-data {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
+  padding: 10px 0;
+}
+
+.tp-real-time-data div {
+  width: 33.3333%;
+}
+
+.tp-real-time-data div h2 {
+  font-weight: bold;
+  color: dodgerblue;
+}
+
+div.tp-create-game {
+  left: 0;
+  top: 0;
+  padding: 1em;
+  background: #fff;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
+}
+
+.tp-input-field,
+input[type="date"] {
+  padding: 1em 0;
+  width: 100%;
+  padding-left: 0.6em;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+  background: rgba(0, 0, 0, 0.09);
+  font-size: 0.9em;
+}
+
+.tp-auth-btn {
+  background: dodgerblue;
+  color: #fff;
+  padding: 1em 1em;
+  display: block;
+  width: 100%;
+  border: 0;
+  font-weight: bold;
+  font-size: 0.9em;
+  border-radius: 5px;
+}
+
+.tp-no-winner {
+  padding: 1em;
+  margin: 1.5em 0;
+  background: #fbdb49;
+}
+
+.tp-indicator {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+  top: 5px;
+  right: 5px;
+}
+
+.tp-game {
+  position: relative;
+
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  padding-top: 30px;
+}
+.tp-game-off {
+  background: red;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.tp-game-on {
+  background: green;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
