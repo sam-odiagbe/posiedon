@@ -12,13 +12,14 @@ const Game = ({ game, setGameState }) => {
           <span className="tp-indicator tp-game-off" />
         )}
       </h2>
-      <label>
+      <label className="tp-container">
         Set game on/off{" "}
         <input
           type="checkbox"
           checked={game.gameison}
           onChange={setGameState}
         />
+        <span className="tp-checkmark" />
       </label>
     </div>
   ) : (
