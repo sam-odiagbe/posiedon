@@ -9,7 +9,7 @@ import Iolistener from "./components/iolistener";
 import actions from "./io/actions";
 import Game from "./components/game";
 
-const { getgameobject, turngameonoroff, updategameobject } = actions;
+const { getgameobject, turngameonoroff, resetuser, updategameobject } = actions;
 class App extends Component {
   constructor() {
     super();
@@ -41,6 +41,7 @@ class App extends Component {
       Socket.emit(turngameonoroff, true);
     } else {
       Socket.emit(turngameonoroff, false);
+      Socket.emit(resetuser);
     }
   }
 

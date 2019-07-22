@@ -16,7 +16,7 @@ const allowedOrigins = [
 const corsOption = {
   origin: (origin, callback) => {
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(orgin) === -1) {
+    if (allowedOrigins.indexOf(origin) === -1) {
       return callback(new Error("not allowed hoss"), false);
     }
     return callback(null, true);
