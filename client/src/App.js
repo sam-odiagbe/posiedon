@@ -20,9 +20,6 @@ class App extends Component {
     };
 
     this.setGameObject = this.setGameObject.bind(this);
-    this.updateTotalNumberOfSignedUpUsers = this.updateTotalNumberOfSignedUpUsers.bind(
-      this
-    );
   }
 
   setGameObject(game) {
@@ -50,12 +47,6 @@ class App extends Component {
     Socket.emit(getgameobject);
   }
 
-  updateTotalNumberOfSignedUpUsers(data) {
-    this.setState({
-      totalSignedUp: data
-    });
-  }
-
   render() {
     return (
       <div className="App">
@@ -66,13 +57,7 @@ class App extends Component {
           <Game game={this.state.game} setGameState={this.setGameState} />
           <CreateGame updateGameObject={this.updateGameObject} />
 
-          <Iolistener
-            socket={Socket}
-            setGameObject={this.setGameObject}
-            updateTotalNumberOfSignedUpUsers={
-              this.updateTotalNumberOfSignedUpUsers
-            }
-          />
+          <Iolistener socket={Socket} setGameObject={this.setGameObject} />
         </div>
       </div>
     );

@@ -8,19 +8,13 @@ class IoListener extends Component {
   }
 
   componentDidMount() {
-    const {
-      socket: Socket,
-      setGameObject,
-      updateTotalNumberOfSignedUpUser
-    } = this.props;
+    const { socket: Socket, setGameObject } = this.props;
 
     Socket.on(setgameobject, game => {
       setGameObject(game);
     });
 
-    Socket.on(newuserjoined, data => {
-      updateTotalNumberOfSignedUpUser(data);
-    });
+    Socket.on(newuserjoined, data => {});
   }
 
   render() {
