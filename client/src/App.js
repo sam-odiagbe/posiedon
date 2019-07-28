@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import Home from "./components/home";
@@ -8,6 +9,7 @@ import Socket from "./io/index";
 import Iolistener from "./components/iolistener";
 import actions from "./io/actions";
 import Game from "./components/game";
+import Test from "./components/test";
 
 const { getgameobject, turngameonoroff, resetuser, updategameobject } = actions;
 class App extends Component {
@@ -34,11 +36,16 @@ class App extends Component {
 
   setGameState(e) {
     const { checked } = e.target;
-    if (checked) {
-      Socket.emit(turngameonoroff, true);
+    const sure = prompt("Are you sure you want to continue");
+    if (sure) {
+      if (checked) {
+        Socket.emit(turngameonoroff, true);
+      } else {
+        Socket.emit(turngameonoroff, false);
+        Socket.emit(resetuser);
+      }
     } else {
-      Socket.emit(turngameonoroff, false);
-      Socket.emit(resetuser);
+      return;
     }
   }
 
@@ -49,17 +56,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="tp-main">
-          <Navigation />
-          <Home totalSignedup={this.state.totalSignedUp} />
-          <Winners />
-          <Game game={this.state.game} setGameState={this.setGameState} />
-          <CreateGame updateGameObject={this.updateGameObject} />
+      <Router>
+        <div className="App">
+          <div className="tp-main">
+            <Navigation />
+            <Home totalSignedup={this.state.totalSignedUp} />
+            <Winners />
+            <Game game={this.state.game} setGameState={this.setGameState} />
+            <CreateGame updateGameObject={this.updateGameObject} />
 
-          <Iolistener socket={Socket} setGameObject={this.setGameObject} />
+            <Iolistener socket={Socket} setGameObject={this.setGameObject} />
+          </div>
+          <Route path="/test" component={Test} exact />
         </div>
-      </div>
+      </Router>
     );
   }
 }
