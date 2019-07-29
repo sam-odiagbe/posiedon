@@ -1,13 +1,24 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = props => {
   return (
     <div className="tp-navigation">
-      <h1>
-        <a href="#" className="tp-brand">
-          Poseidon
-        </a>
-      </h1>
+      <Link to="/" exact className="tp-brand">
+        Poseidon
+      </Link>
+      <ul>
+        <li>
+          <NavLink to="/withdrawal_request" activeClassName="tp-nav-active">
+            withdrawals
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/game" activeClassName="tp-nav-active">
+            game
+          </NavLink>
+        </li>
+      </ul>
     </div>
   );
 };

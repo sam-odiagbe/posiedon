@@ -10,7 +10,6 @@ class CreateGame extends Component {
       game: {
         question: "",
         options: "",
-        possibleWinners: 0,
         date: "",
         answer: ""
       }
@@ -29,6 +28,7 @@ class CreateGame extends Component {
     const game = this.state.game;
     const { updateGameObject } = this.props;
     updateGameObject(game);
+    e.target.reset();
   }
 
   render() {
@@ -41,11 +41,10 @@ class CreateGame extends Component {
     } = this.state.game;
     return (
       <div className="tp-create-game">
-        <h3 style={{ padding: 10, paddingLeft: 0 }}>Create a new game</h3>
+        <h4 style={{ padding: 10, paddingLeft: 0 }}>Create a new game</h4>
         <form onSubmit={this.updateGameObject}>
           <div>
-            <input
-              type="text"
+            <textarea
               className="tp-input-field"
               placeholder="question"
               id="question"
@@ -62,17 +61,6 @@ class CreateGame extends Component {
               value={options}
               required
               id="options"
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <input
-              type="number"
-              placeholder="total possible winners"
-              value={possibleWinners}
-              className="tp-input-field"
-              id="totalwinners"
-              required
               onChange={this.handleInputChange}
             />
           </div>

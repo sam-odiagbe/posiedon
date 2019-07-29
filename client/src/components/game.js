@@ -1,32 +1,42 @@
-import React from "react";
-const Game = ({ game, setGameState }) => {
-  const res = game ? (
-    <div className="tp-game">
-      <h2>{game.question.question}</h2>
-      <h4>{game.question.option.toString()}</h4>
-      <h4>{game.question.answer}</h4>
-      <h2 style={{ paddingTop: 20 }}>
-        {game.gameison ? (
-          <span className="tp-indicator tp-game-on" />
-        ) : (
-          <span className="tp-indicator tp-game-off" />
-        )}
-      </h2>
-      <label className="tp-container">
-        Set game on/off{" "}
-        <input
-          type="checkbox"
-          checked={game.gameison}
-          onChange={setGameState}
-        />
-        <span className="tp-checkmark" />
-      </label>
-    </div>
-  ) : (
-    <h3>No game is on</h3>
-  );
+import React, { Component } from "react";
+import CreateGame from "./creategame";
 
-  return res;
-};
+class Game extends Component {
+  render() {
+    const { game } = this.props;
+    const drawGame = game ? (
+      <React.Fragment>
+        <p className={`${game.gameison ? "tp-on" : "tp-off"}`}>
+          {game.question.question}
+        </p>
+        <div className="tp-options">
+          {game.question.option.map(val => {
+            return <div className="tp-chip">{val}</div>;
+          })}
+          <label className="tp-container">
+            set game on/off
+            <input
+              type="checkbox"
+              onChange={this.props.setGameState}
+              checked={game.gameison}
+            />
+            <span className="tp-checkmark" />
+          </label>
+        </div>
+      </React.Fragment>
+    ) : (
+      "Getting game...."
+    );
+    return (
+      <div className="game">
+        <h4 className="tp-heading">Game</h4>
+
+        <h4>Current game</h4>
+        <div className={`tp-on-game`}>{drawGame}</div>
+        <CreateGame updateGameObject={this.props.updateGameObject} />
+      </div>
+    );
+  }
+}
 
 export default Game;

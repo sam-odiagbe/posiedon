@@ -4,7 +4,9 @@ const actions = {
   turngameonoroff: "TURN-ON-OFF",
   updategameobject: "UPDATE-GAME-OBJECT",
   newuserjoined: "NEW-USER",
-  resetuser: "RESETUSER"
+  resetuser: "RESETUSER",
+  getwithdrawalrequest: "GET-WITHDRAWAL-REQUESTS",
+  requests: "RECIEVED-REQUEST"
 };
 
 export default actions;

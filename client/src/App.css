@@ -6,116 +6,39 @@
   box-sizing: border-box;
   font-weight: normal;
 }
+
+body {
+  background: #fff;
+}
 a {
   text-decoration: none;
   font-size: 0.9em;
   font-weight: bold;
+  color: #222;
 }
 
+.tp-nav-active {
+  font-weight: bold;
+  color: #2196f3;
+}
+
+.tp-brand {
+  font-size: 1.3em;
+}
 .tp-navigation {
+  height: 60px;
   display: flex;
-  padding: 10px 1em;
-  justify-content: center;
-  align-content: center;
-}
-
-.tp-main {
+  justify-content: space-between;
+  align-items: center;
   padding: 0 1em;
+  border-bottom: 1.5px solid rgb(42, 216, 115);
 }
 
 .tp-navigation ul li {
-  display: inline;
-  padding: 0 0.5em;
+  display: inline-block;
+  list-style: none;
+  padding: 0 0.3em;
 }
-
-.tp-navigation ul li a {
-  color: black;
-}
-
-.tp-real-time-data {
-  display: flex;
-  justify-content: space-evenly;
-  align-content: center;
-  padding: 10px 0;
-}
-
-.tp-real-time-data div {
-  width: 33.3333%;
-}
-
-.tp-real-time-data div h2 {
-  font-weight: bold;
-  color: dodgerblue;
-}
-
-div.tp-create-game {
-  left: 0;
-  top: 0;
-  padding: 1em;
-  background: #fff;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-  margin-top: 10px;
-}
-
-.tp-input-field,
-input[type="date"] {
-  padding: 1em 0;
-  width: 100%;
-  padding-left: 0.6em;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  outline: 0;
-  border: 0;
-  background: rgba(0, 0, 0, 0.09);
-  font-size: 0.9em;
-}
-
-.tp-auth-btn {
-  background: dodgerblue;
-  color: #fff;
-  padding: 1em 1em;
-  display: block;
-  width: 100%;
-  border: 0;
-  font-weight: bold;
-  font-size: 0.9em;
-  border-radius: 5px;
-}
-
-.tp-no-winner {
-  padding: 1em;
-  margin: 1.5em 0;
-  background: #fbdb49;
-}
-
-.tp-indicator {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  position: absolute;
-  z-index: 10;
-  top: 5px;
-  right: 5px;
-}
-
-.tp-game {
-  position: relative;
-
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-  padding: 1em;
-  padding-top: 30px;
-}
-.tp-game-off {
-  background: red;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-}
-
-.tp-game-on {
-  background: green;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
-}
-
-/* checkbox */
 
 .tp-container {
   display: block;
@@ -123,6 +46,7 @@ input[type="date"] {
   padding-left: 35px;
   margin-bottom: 12px;
   cursor: pointer;
+  margin-top: 10px;
   font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -138,7 +62,6 @@ input[type="date"] {
   height: 0;
   width: 0;
 }
-
 /* Create a custom checkbox */
 .tp-checkmark {
   position: absolute;
@@ -146,17 +69,17 @@ input[type="date"] {
   left: 0;
   height: 25px;
   width: 25px;
-  background-color: #eee;
+  background-color: #fff;
 }
 
 /* On mouse-over, add a grey background color */
 .tp-container:hover input ~ .tp-checkmark {
-  background-color: #ccc;
+  background-color: #fff;
 }
 
 /* When the checkbox is checked, add a blue background */
 .tp-container input:checked ~ .tp-checkmark {
-  background-color: #2196f3;
+  background-color: #21f344;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -182,4 +105,86 @@ input[type="date"] {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.tp-main-container {
+  padding: 10px 0.8em;
+}
+
+.tp-heading {
+  color: #222;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+  border-bottom: 0.8px solid rgba(0, 0, 0, 0.3);
+}
+
+/* creating game */
+
+.tp-create-game form input,
+.tp-create-game form textarea {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 1em 0.5em;
+  padding-right: 0;
+  border: 1px solid rgba(20, 148, 223, 0.7);
+  font-size: 0.9em;
+  border-radius: 3px;
+}
+
+.tp-create-game form input:focus,
+.tp-create-game form textarea:focus {
+  border: 1px solid rgba(14, 218, 99, 0.7);
+}
+
+.tp-create-game form button {
+  padding: 1.1em;
+  border-radius: 3px;
+  width: 100%;
+  background: rgb(6, 187, 103);
+  color: #fff;
+  font-weight: bolder;
+  border: 0;
+}
+
+.tp-on {
+  color: green;
+  font-weight: bold;
+}
+
+.tp-off {
+  color: red;
+  font-weight: bold;
+}
+.tp-on-game {
+  padding: 10px 0.8em;
+  background: #ccc;
+}
+
+.tp-options {
+  margin-top: 10px;
+}
+
+.tp-chip {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 0 10px;
+  border-radius: 50%;
+  font-size: 0.9em;
+  text-align: center;
+  background: rgb(11, 116, 100);
+  color: #fff;
+  margin-right: 10px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 20px;
+}
+
+.tp-withdraw-request {
+  background: #ccc;
+  margin-bottom: 10px;
+  padding: 5px 0.8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
 }

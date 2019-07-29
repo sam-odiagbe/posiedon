@@ -1,30 +1,39 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navigation from "./components/Navigation";
-import Home from "./components/home";
-import CreateGame from "./components/creategame";
-import Winners from "./components/winners";
 import Socket from "./io/index";
 import Iolistener from "./components/iolistener";
-import actions from "./io/actions";
+import Withdrawals from "./components/withdrawals";
 import Game from "./components/game";
-import Test from "./components/test";
+import actions from "./io/actions";
 
-const { getgameobject, turngameonoroff, resetuser, updategameobject } = actions;
+const {
+  getgameobject,
+  turngameonoroff,
+  resetuser,
+  updategameobject,
+
+  getwithdrawalrequest
+} = actions;
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
       game: null,
-      totalSignedUp: null
+
+      totalSignedUp: null,
+      withdrawals: []
     };
 
     this.setGameObject = this.setGameObject.bind(this);
+    this.setWithdrawalRequest = this.setWithdrawalRequest.bind(this);
   }
 
   setGameObject(game) {
+    // hello how are you doing
+    console.log(game);
     this.setState({
       game
     });
@@ -49,25 +58,58 @@ class App extends Component {
     }
   }
 
+  setWithdrawalRequest(data) {
+    this.setState({
+      withdrawals: data
+    });
+  }
+
   componentDidMount() {
     // grab the game object from the server
     Socket.emit(getgameobject);
+    Socket.emit(getwithdrawalrequest);
   }
 
   render() {
     return (
       <Router>
         <div className="App">
-          <div className="tp-main">
-            <Navigation />
-            <Home totalSignedup={this.state.totalSignedUp} />
-            <Winners />
-            <Game game={this.state.game} setGameState={this.setGameState} />
-            <CreateGame updateGameObject={this.updateGameObject} />
-
-            <Iolistener socket={Socket} setGameObject={this.setGameObject} />
+          <Navigation setGameState={this.setGameState} />
+          <div className="tp-main-container">
+            <Switch>
+              <Route
+                path="/withdrawal_request"
+                exact
+                render={routeProps => {
+                  return (
+                    <Withdrawals
+                      {...routeProps}
+                      withdrawals={this.state.withdrawals}
+                    />
+                  );
+                }}
+              />
+              <Route
+                path="/game"
+                exact
+                render={routeprops => {
+                  return (
+                    <Game
+                      {...routeprops}
+                      game={this.state.game}
+                      setGameState={this.setGameState}
+                      updateGameObject={this.updateGameObject}
+                    />
+                  );
+                }}
+              />
+            </Switch>
           </div>
-          <Route path="/test" component={Test} exact />
+          <Iolistener
+            socket={Socket}
+            setWithdrawalRequest={this.setWithdrawalRequest}
+            setGameObject={this.setGameObject}
+          />
         </div>
       </Router>
     );
