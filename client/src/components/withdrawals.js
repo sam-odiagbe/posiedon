@@ -1,12 +1,22 @@
 import React, { Component } from "react";
+import actions from "../io/actions";
+
+const { clearwithdrawal } = actions;
 
 class Withdrawals extends Component {
   constructor() {
     super();
+
+    this.clearWithdrawalRequest = this.clearWithdrawalRequest.bind(this);
   }
 
   componentDidMount() {
     // grab withdrawal request
+  }
+
+  clearWithdrawalRequest(e) {
+    const id = e.target.id;
+    this.props.socket.emit(clearwithdrawal, id);
   }
   render() {
     const { withdrawals } = this.props;
@@ -22,12 +32,14 @@ class Withdrawals extends Component {
               </div>
 
               <div>
-                <span
+                <button
+                  className="tp-dismiss"
                   style={{ fontSize: 40, color: "red" }}
-                  onClick={this.props.clearWithdrawalRequest(val._id)}
+                  onClick={this.clearWithdrawalRequest}
+                  id={val._id}
                 >
                   &times;
-                </span>
+                </button>
               </div>
             </div>
           );

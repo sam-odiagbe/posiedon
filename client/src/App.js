@@ -7,6 +7,8 @@ import Iolistener from "./components/iolistener";
 import Withdrawals from "./components/withdrawals";
 import Game from "./components/game";
 import actions from "./io/actions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const {
   getgameobject,
@@ -29,6 +31,7 @@ class App extends Component {
 
     this.setGameObject = this.setGameObject.bind(this);
     this.setWithdrawalRequest = this.setWithdrawalRequest.bind(this);
+    this.updateWithdrawalData = this.updateWithdrawalData.bind(this);
   }
 
   setGameObject(game) {
@@ -41,10 +44,6 @@ class App extends Component {
 
   updateGameObject(data) {
     Socket.emit(updategameobject, data);
-  }
-
-  clearWithdrawalRequest(id) {
-    Socket.emit(clearwithdrawal, id);
   }
 
   setGameState(e) {
@@ -74,11 +73,23 @@ class App extends Component {
     Socket.emit(getwithdrawalrequest);
   }
 
+  updateWithdrawalData(data) {
+    const withdraws = this.state.withdrawals.filter(val => {
+      console.log(data, val);
+      return data._id !== val._id;
+    });
+    console.log(withdraws);
+    this.setState({
+      withdrawals: withdraws
+    });
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
           <Navigation setGameState={this.setGameState} />
+          <ToastContainer />
           <div className="tp-main-container">
             <Switch>
               <Route
@@ -89,7 +100,7 @@ class App extends Component {
                     <Withdrawals
                       {...routeProps}
                       withdrawals={this.state.withdrawals}
-                      clearWithdrawalRequest={this.clearWithdrawalRequest}
+                      socket={Socket}
                     />
                   );
                 }}
@@ -114,6 +125,7 @@ class App extends Component {
             socket={Socket}
             setWithdrawalRequest={this.setWithdrawalRequest}
             setGameObject={this.setGameObject}
+            updateWithdrawalData={this.updateWithdrawalData}
           />
         </div>
       </Router>

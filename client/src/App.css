@@ -188,3 +188,11 @@ a {
   align-items: center;
   border-radius: 5px;
 }
+
+.tp-dismiss {
+  padding: 8px 1em;
+  display: block;
+  background: transparent;
+  border: none;
+  outline: none;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import actions from "../io/actions";
+import { toast } from "react-toastify";
 
 const { setgameobject, newuserjoined, requests } = actions;
 class IoListener extends Component {
@@ -8,7 +9,12 @@ class IoListener extends Component {
   }
 
   componentDidMount() {
-    const { socket: Socket, setGameObject, setWithdrawalRequest } = this.props;
+    const {
+      updateWithdrawalData,
+      socket: Socket,
+      setGameObject,
+      setWithdrawalRequest
+    } = this.props;
 
     Socket.on(setgameobject, game => {
       setGameObject(game);
@@ -18,6 +24,13 @@ class IoListener extends Component {
 
     Socket.on(requests, data => {
       setWithdrawalRequest(data);
+    });
+
+    Socket.on("CLEARED", data => {
+      updateWithdrawalData(data);
+      toast("Withdrawal has been cleared", {
+        delay: 50
+      });
     });
   }
 
