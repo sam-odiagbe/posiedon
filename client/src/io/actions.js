@@ -6,7 +6,8 @@ const actions = {
   newuserjoined: "NEW-USER",
   resetuser: "RESETUSER",
   getwithdrawalrequest: "GET-WITHDRAWAL-REQUESTS",
-  requests: "RECIEVED-REQUEST"
+  requests: "RECIEVED-REQUEST",
+  clearwithdrawal: "CLEAR-WITHDRAWAL"
 };
 
 export default actions;

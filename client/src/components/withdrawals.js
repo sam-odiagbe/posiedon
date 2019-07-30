@@ -22,7 +22,12 @@ class Withdrawals extends Component {
               </div>
 
               <div>
-                <span style={{ fontSize: 40, color: "red" }}>&times;</span>
+                <span
+                  style={{ fontSize: 40, color: "red" }}
+                  onClick={this.props.clearWithdrawalRequest(val._id)}
+                >
+                  &times;
+                </span>
               </div>
             </div>
           );

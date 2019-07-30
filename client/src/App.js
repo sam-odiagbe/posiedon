@@ -13,7 +13,7 @@ const {
   turngameonoroff,
   resetuser,
   updategameobject,
-
+  clearwithdrawal,
   getwithdrawalrequest
 } = actions;
 class App extends Component {
@@ -41,6 +41,10 @@ class App extends Component {
 
   updateGameObject(data) {
     Socket.emit(updategameobject, data);
+  }
+
+  clearWithdrawalRequest(id) {
+    Socket.emit(clearwithdrawal, id);
   }
 
   setGameState(e) {
@@ -85,6 +89,7 @@ class App extends Component {
                     <Withdrawals
                       {...routeProps}
                       withdrawals={this.state.withdrawals}
+                      clearWithdrawalRequest={this.clearWithdrawalRequest}
                     />
                   );
                 }}
