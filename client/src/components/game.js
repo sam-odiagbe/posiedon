@@ -17,12 +17,15 @@ class Game extends Component {
             set game on/off
             <input
               type="checkbox"
-              onChange={this.props.setGameState}
+              onChange={this.props.turnGameOn}
               checked={game.gameison}
             />
             <span className="tp-checkmark" />
           </label>
         </div>
+        <button onClick={this.props.resetGameObject} className="tp-reset">
+          Reset game object
+        </button>
       </React.Fragment>
     ) : (
       "Getting game...."
@@ -33,7 +36,7 @@ class Game extends Component {
 
         <h4>Current game</h4>
         <div className={`tp-on-game`}>{drawGame}</div>
-        <CreateGame updateGameObject={this.props.updateGameObject} />
+        <CreateGame createNewGame={this.props.createGame} />
       </div>
     );
   }

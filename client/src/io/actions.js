@@ -1,10 +1,10 @@
 const actions = {
   getgameobject: "GET-GAME",
   setgameobject: "SET-GAME",
-  turngameonoroff: "TURN-ON-OFF",
-  updategameobject: "UPDATE-GAME-OBJECT",
+  turngameon: "TURN-GAME-ON",
+  creategame: "CREATE-GAME",
   newuserjoined: "NEW-USER",
-  resetuser: "RESETUSER",
+  resetgame: "RESETGAME",
   getwithdrawalrequest: "GET-WITHDRAWAL-REQUESTS",
   requests: "RECIEVED-REQUEST",
   clearwithdrawal: "CLEAR-WITHDRAWAL"

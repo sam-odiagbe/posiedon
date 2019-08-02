@@ -5,12 +5,11 @@ class CreateGame extends Component {
     super();
 
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.updateGameObject = this.updateGameObject.bind(this);
+    this.createGame = this.createGame.bind(this);
     this.state = {
       game: {
         question: "",
         options: "",
-        date: "",
         answer: ""
       }
     };
@@ -23,26 +22,20 @@ class CreateGame extends Component {
     });
   }
 
-  updateGameObject(e) {
+  createGame(e) {
     e.preventDefault();
+    console.log(this.props);
     const game = this.state.game;
-    const { updateGameObject } = this.props;
-    updateGameObject(game);
-    e.target.reset();
+    const { createNewGame } = this.props;
+    createNewGame(game);
   }
 
   render() {
-    const {
-      question,
-      options,
-      possibleWinners,
-      date,
-      answer
-    } = this.state.game;
+    const { question, options, answer } = this.state.game;
     return (
       <div className="tp-create-game">
         <h4 style={{ padding: 10, paddingLeft: 0 }}>Create a new game</h4>
-        <form onSubmit={this.updateGameObject}>
+        <form onSubmit={this.createGame}>
           <div>
             <textarea
               className="tp-input-field"
@@ -73,16 +66,6 @@ class CreateGame extends Component {
               id="answer"
               required
               onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <input
-              type="date"
-              id="date"
-              className="tp-input-field"
-              placeholder="Choose date"
-              onChange={this.handleInputChange}
-              value={date}
             />
           </div>
 

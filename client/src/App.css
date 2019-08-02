@@ -157,7 +157,6 @@ a {
 }
 .tp-on-game {
   padding: 10px 0.8em;
-  background: #ccc;
 }
 
 .tp-options {
@@ -190,9 +189,16 @@ a {
 }
 
 .tp-dismiss {
-  padding: 8px 1em;
+  padding: 8px 0;
   display: block;
   background: transparent;
   border: none;
   outline: none;
+}
+.tp-reset {
+  padding: 10px 0.9em;
+  border: 0;
+  background: #2196f3;
+  color: #fff;
+  outline: 0;
 }

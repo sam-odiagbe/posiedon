@@ -12,11 +12,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 const {
   getgameobject,
-  turngameonoroff,
-  resetuser,
-  updategameobject,
-  clearwithdrawal,
-  getwithdrawalrequest
+  resetgame,
+  creategame,
+  getwithdrawalrequest,
+  turngameon
 } = actions;
 class App extends Component {
   constructor() {
@@ -29,6 +28,7 @@ class App extends Component {
       withdrawals: []
     };
 
+    this.createGame = this.createGame.bind(this);
     this.setGameObject = this.setGameObject.bind(this);
     this.setWithdrawalRequest = this.setWithdrawalRequest.bind(this);
     this.updateWithdrawalData = this.updateWithdrawalData.bind(this);
@@ -42,20 +42,14 @@ class App extends Component {
     });
   }
 
-  updateGameObject(data) {
-    Socket.emit(updategameobject, data);
+  createGame(data) {
+    Socket.emit(creategame, data);
   }
 
-  setGameState(e) {
-    const { checked } = e.target;
+  resetGameObject(e) {
     const sure = prompt("Are you sure you want to continue");
     if (sure) {
-      if (checked) {
-        Socket.emit(turngameonoroff, true);
-      } else {
-        Socket.emit(turngameonoroff, false);
-        Socket.emit(resetuser);
-      }
+      Socket.emit(resetgame);
     } else {
       return;
     }
@@ -82,6 +76,11 @@ class App extends Component {
     this.setState({
       withdrawals: withdraws
     });
+  }
+
+  turnGameOn(e) {
+    // if (e.target.checked) return;
+    Socket.emit(turngameon);
   }
 
   render() {
@@ -114,7 +113,9 @@ class App extends Component {
                       {...routeprops}
                       game={this.state.game}
                       setGameState={this.setGameState}
-                      updateGameObject={this.updateGameObject}
+                      createGame={this.createGame}
+                      resetGameObject={this.resetGameObject}
+                      turnGameOn={this.turnGameOn}
                     />
                   );
                 }}
